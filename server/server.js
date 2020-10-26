@@ -1,25 +1,13 @@
 const express = require("express");
 const app = express();
-const mysql = require('@mysql/xdevapi');
 
-require("dotenv").config();
+//middleware in order for the server to accept request objects as json objects
+app.use(express.json());
 
-//connect to MySQL db
-mysql.getSession({
-    host: process.env.HOST,
-    user: process.env.USER,
-    password: process.env.PASSWORD,
-    schema: process.env.DB,
-    port: process.env.PORT
-}).then(() => {
-    console.log("Connected to database...")
-}).catch((err) => {
-    if(err) {
-        console.error(err.message);
-    }
-})
+const userRouter = require('./routes/users');
+app.use('/users', userRouter);
 
 //listen to the server and send a message to ensure server started
 app.listen(3000, () => {
-    console.log("Server started...");
+    console.log("Server started on port 3000...");
 })
