@@ -11,14 +11,6 @@ import { catchError, map } from 'rxjs/operators';
 })
 export class UserService {
 
-  // currentUser: User = {
-  //   first_name: '',
-  //   last_name: '',
-  //   email: '',
-  //   password: '',
-  //   role: 'user'
-  // };
-
   constructor(private http: HttpClient, public router: Router) { }
 
   private baseUrl = 'http://localhost:3000/users';
@@ -59,7 +51,7 @@ export class UserService {
     return sessionStorage.getItem('access_token');
   }
 
-  get isLoggedIn(): boolean {
+  isLoggedIn(): boolean {
     let authToken = sessionStorage.getItem('access_token');
     return (authToken !== null) ? true : false;
   }
