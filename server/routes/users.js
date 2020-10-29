@@ -4,7 +4,7 @@ const db = require("../util/db");
 
 //login
 router.post('/login', (req, res) => {
-    const login_user_sql = 'Select email from user where email = ? and password = ?';
+    const login_user_sql = 'Select * from user where email = ? and password = ?';
     db.query(login_user_sql, [req.body.email, req.body.password], (err, data) => {
         if(err) throw err;
 
