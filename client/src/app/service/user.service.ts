@@ -14,8 +14,9 @@ export class UserService {
   constructor(private http: HttpClient, public router: Router) { }
 
   private baseUrl = 'http://localhost:3000/users';
-  currentUser = {};
-  id;
+  currentUser = {};  
+  id: number;
+  role: string;
 
   login(user: User) {
     return this.http.post<User>(`${this.baseUrl}/login`, user)
@@ -24,7 +25,9 @@ export class UserService {
           this.getUser(res[0].id).subscribe((res) => {
             this.currentUser = res;
             this.id = this.currentUser[0].id;
+            this.role = this.currentUser[0].role;
             localStorage.setItem('id', this.id.toString());
+            localStorage.setItem('role', this.role);
             this.router.navigate(['/home']);
           })
         })
@@ -46,6 +49,7 @@ export class UserService {
   //   return this.http.patch()
   // }
 
+
   deleteUser(id: number) {
     return this.http.delete(`${this.baseUrl}/${id}`);
   }
@@ -57,6 +61,10 @@ export class UserService {
   isLoggedIn(): boolean {
     let authToken = sessionStorage.getItem('access_token');
     return (authToken !== null) ? true : false;
+  }
+
+  isAdmin(): boolean {
+    return (localStorage.getItem('role') === 'admin') ? true : false;
   }
 
   logout() {

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from "@angular/forms";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
 import { UserService } from '../../service/user.service';
 
@@ -17,8 +17,8 @@ export class LoginComponent {
     public userService: UserService,
   ) { 
     this.loginForm= this.formBuilder.group({
-      email: [''],
-      password: ['']
+      email: ['', Validators.required],
+      password: ['', Validators.required]
     })
   }
 

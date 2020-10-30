@@ -10,14 +10,16 @@ import { UserService } from '../../service/user.service';
 })
 export class WelcomeComponent implements OnInit {
 
-  currentUser = {};
+  currentUser = {
+    first_name: ''
+  };
 
   constructor(public userService: UserService) { }
 
   ngOnInit(): void {
     this.userService.getUser(parseInt(localStorage.getItem('id')))
       .subscribe(res => {
-        this.currentUser = res;
+        this.currentUser = res[0].first_name;
       })
 
   }
