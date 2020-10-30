@@ -4,6 +4,10 @@
         {{appComponent.title}}
     </div>
 
+    <div class="nav-element" *ngIf="admin" (click)="users()">
+        Users
+    </div>
+
     <div class="nav-element" (click)="profile()">
         Profile
     </div>

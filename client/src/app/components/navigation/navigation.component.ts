@@ -10,15 +10,18 @@ import { UserService } from '../../service/user.service';
   styleUrls: ['./navigation.component.css']
 })
 
-export class NavigationComponent{
+export class NavigationComponent implements OnInit{
 
   constructor(
-    public userService: UserService, 
+    private userService: UserService, 
     public appComponent: AppComponent,
-    public router: Router) { }
+    private router: Router) { }
 
-  // ngOnInit(): void {
-  // }
+  admin: boolean 
+
+  ngOnInit(): void {
+    this.admin = this.userService.isAdmin();
+  }
 
   home() {
     this.router.navigate(['home']);
@@ -26,6 +29,10 @@ export class NavigationComponent{
 
   profile() {
     this.router.navigate(['profile']);
+  }
+
+  users() {
+    this.router.navigate(['users']);
   }
 
   logoutUser() {
