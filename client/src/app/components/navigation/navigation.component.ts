@@ -19,7 +19,7 @@ export class NavigationComponent{
 
   // ngOnInit(): void {
   // }
-  
+
   home() {
     this.router.navigate(['home']);
   }
@@ -29,6 +29,7 @@ export class NavigationComponent{
   }
 
   logoutUser() {
+    localStorage.clear()
     this.userService.logout()
   }
 

@@ -11,15 +11,20 @@ import { UserService } from '../../service/user.service';
 export class ProfileComponent implements OnInit {
 
   user = {
-      first_name: "John",
-      last_name: "Smith",
-      email: "js@email.com",
-      password: "P@ssW0rd"
+    first_name: "",
+    last_name: "",
+    email: "",
+    password: ""
   }
 
   constructor(public userService: UserService) { }
 
   ngOnInit(): void {
+    this.userService.getUser(parseInt(localStorage.getItem('id')))
+      .subscribe(res => {
+        this.user = res[0];
+        console.log(this.user)
+      })
   }
 
 }

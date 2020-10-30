@@ -13,29 +13,7 @@ export class UsersComponent implements OnInit {
 
   editUserForm: FormGroup;
 
-  userList = [
-    {
-      id: 1,
-      first_name: "John",
-      last_name: "Smith",
-      email: "js@email.com",
-      role: "admin"
-    },
-    {
-      id: 1,
-      first_name: "John",
-      last_name: "Smith",
-      email: "js@email.com",
-      role: "admin"
-    },
-    {
-      id: 1,
-      first_name: "John",
-      last_name: "Smith",
-      email: "js@email.com",
-      role: "admin"
-    }
-  ]
+  userList: object;
 
   addUserForm : FormGroup;
   add: boolean = false;
@@ -43,6 +21,12 @@ export class UsersComponent implements OnInit {
   constructor(private userService: UserService, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+
+    this.userService.getAllUsers()
+      .subscribe(res => {
+        this.userList = res;
+      })
+
     this.editUserForm = this.formBuilder.group({
       first_name: [''],
       last_name: [''],

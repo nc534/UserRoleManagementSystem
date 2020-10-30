@@ -15,6 +15,7 @@ export class UserService {
 
   private baseUrl = 'http://localhost:3000/users';
   currentUser = {};
+  id;
 
   login(user: User) {
     return this.http.post<User>(`${this.baseUrl}/login`, user)
@@ -22,6 +23,8 @@ export class UserService {
           sessionStorage.setItem('access_token', res[0].email)
           this.getUser(res[0].id).subscribe((res) => {
             this.currentUser = res;
+            this.id = this.currentUser[0].id;
+            localStorage.setItem('id', this.id.toString());
             this.router.navigate(['/home']);
           })
         })
