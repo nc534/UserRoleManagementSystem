@@ -9,23 +9,16 @@ import { UserService } from '../../service/user.service';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css', '../../app.component.css']
 })
-export class RegisterComponent{
+
+export class RegisterComponent implements OnInit {
 
   registerForm: FormGroup;
 
   constructor(
-    public formBuilder: FormBuilder,
-    public userService: UserService,
-    public router: Router
-  ) { 
-    this.registerForm= this.formBuilder.group({
-      first_name: [''],
-      last_name: [''],
-      email: [''],
-      password: [''],
-      role: ['user']
-    })
-  }
+    private formBuilder: FormBuilder,
+    private userService: UserService,
+    private router: Router
+  ) { }
 
   registerUser() {
     
@@ -40,7 +33,14 @@ export class RegisterComponent{
 
   }
 
-  // ngOnInit(): void {
-  // }
+  ngOnInit(): void {
+    this.registerForm= this.formBuilder.group({
+      first_name: [''],
+      last_name: [''],
+      email: [''],
+      password: [''],
+      role: ['user']
+    });
+  }
 
 }

@@ -1,6 +1,30 @@
-<div>
+<div class="main">
     <app-navigation></app-navigation>
-    <div>
-        <h1>Profile Page</h1>
+    <div class="container">
+        <div>
+            <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" class="user">
+        </div>
+        <div class="info">
+            <div>
+                <h4>First Name</h4>
+                <p>{{user.first_name}}</p>
+            </div>
+            <div>
+                <h4>Last Name</h4>
+                <p>{{user.last_name}}</p>
+            </div>
+            <div>
+                <h4>Email</h4>
+                <p>{{user.email}}</p>
+            </div>
+            <div>
+                <h4>Password</h4>
+                <p>{{user.password}}</p>
+            </div>
+        </div>
+
+        <div>
+            <button type="button" class="edit">Edit</button>
+        </div>
     </div>
 </div>

@@ -1,0 +1,21 @@
+.welcome {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-image: url("https://storage.needpix.com/rsynced_images/ppt-backgrounds-2340383_1280.png");
+    background-size: cover;
+}
+
+h1 {
+    margin: 0px;
+    font-size: 5em;
+    color: #0e476d;
+}
+
+h3 {
+    margin-top: 0px;
+    margin-bottom: 2.5em;
+    font-size: 2.5em;
+}

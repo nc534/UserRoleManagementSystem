@@ -1,9 +1,4 @@
-.main {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+.background {
     background-image: url("https://c.pxhere.com/images/1c/ac/5dd0f1bf312a8d40a39b47e12c5b-1448601.jpg!d");
     background-size: cover;
     display: flex;
@@ -11,7 +6,6 @@
     align-items: center;
     justify-content: center;
     overflow: auto;
-    font-family: "Roboto", sans-serif;
 }
 
 .form-container {
@@ -38,7 +32,6 @@ input {
     margin: 0 0 10px;
     padding: 10px;
     box-sizing: border-box;
-    font-size: 15px;
 }
 
 .center {
@@ -48,7 +41,6 @@ input {
 }
 
 .btn {
-    font-size: 15px;
     background-color: #0e476d;
     color: white;
     border-radius: 3px;
@@ -61,5 +53,4 @@ input {
 a {
 	text-decoration: none;
     color: #0e476d;
-    font-size: 15px;
 }

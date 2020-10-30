@@ -22,13 +22,6 @@ export class LoginComponent {
     })
   }
 
-  // ngOnInit(): void {
-  //   const loginInfo = {
-  //     email: '',
-  //     password: ''
-  //   }
-  // }
-
   loginUser() {
     this.userService.login(this.loginForm.value)
   }

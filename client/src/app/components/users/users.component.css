@@ -1,0 +1,98 @@
+.container {
+    padding-top: 1em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+}
+
+.user-table {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+table {
+    width: 80%;
+    border-collapse: collapse;
+    border: solid #CCC 1px;
+}
+
+tr:nth-child(odd) td { background: #F1F1F1; }
+
+th, td {
+    border-top: solid #CCC 1px;
+    width: 2em;
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    height: 2.5em;
+}
+
+.name {
+    width: 12em;
+}
+
+.email {
+    width: 20em;
+}
+
+.edit {
+    background-color: #3498db;
+    color: white;
+    border-radius: 3px;
+    border: none;
+    outline: none;
+    padding: 8px 10px;
+}
+
+.delete {
+    background-color: #e05959;
+    color: white;
+    border-radius: 3px;
+    border: none;
+    outline: none;
+    padding: 8px 10px;
+}
+
+.add {
+    background-color: #0e476d;
+    color: white;
+    border-radius: 3px;
+    border: none;
+    outline: none;
+    padding: 8px 10px;
+    margin: 2em;
+}
+
+.btn {
+    background-color: rgb(106, 158, 106);
+    color: white;
+    border-radius: 3px;
+    border: none;
+    outline: none;
+    padding: 8px 10px;
+    margin: .5em 0em 0em 0em;
+}
+
+.addForm {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;    
+}
+
+.form-group {
+    padding: 5px;
+    float: left;
+}
+
+input, select {
+    border: 1px lightgray solid;
+    border-radius: 5px;
+    margin: 5px 0px 0px 5px;
+    padding: 8px;
+    box-sizing: border-box;
+}
