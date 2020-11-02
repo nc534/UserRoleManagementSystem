@@ -11,7 +11,7 @@ import { catchError, map } from 'rxjs/operators';
 })
 export class UserService {
 
-  constructor(private http: HttpClient, public router: Router) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   private baseUrl = 'http://localhost:3000/users';
   currentUser = {};  
@@ -41,13 +41,13 @@ export class UserService {
     return this.http.get(this.baseUrl);
   }
 
-  getUser(id: number) {
-    return this.http.get(`${this.baseUrl}/${id}`);
+  getUser(id: number): Observable<User> {
+    return this.http.get<User>(`${this.baseUrl}/${id}`);
   }
 
-  // updateUser(user: User) {
-  //   return this.http.patch()
-  // }
+  updateUser(id: number, changes: object) {
+    return this.http.patch(`${this.baseUrl}/${id}`, changes)
+  }
 
 
   deleteUser(id: number) {

@@ -7,24 +7,39 @@
         <div class="info">
             <div>
                 <h4>First Name</h4>
-                <p>{{user.first_name}}</p>
+                <input type="text" [(ngModel)]="changedUser.first_name" *ngIf="editMode">
+                <span *ngIf="!editMode">{{changedUser.first_name}}</span>
             </div>
             <div>
                 <h4>Last Name</h4>
-                <p>{{user.last_name}}</p>
+                <input type="text" [(ngModel)]="changedUser.last_name" *ngIf="editMode">
+                <span *ngIf="!editMode">{{changedUser.last_name}}</span>
             </div>
             <div>
                 <h4>Email</h4>
-                <p>{{user.email}}</p>
+                <input type="text" [(ngModel)]="changedUser.email" *ngIf="editMode">
+                <span *ngIf="!editMode">{{changedUser.email}}</span>
             </div>
             <div>
                 <h4>Password</h4>
-                <p>{{user.password}}</p>
+                <input type="text" [(ngModel)]="changedUser.password" *ngIf="editMode">
+                <span *ngIf="!editMode">{{changedUser.password}}</span>
+            </div>
+        </div>
+
+        <div *ngIf="deleteMode" class="delete-container">
+            <div class="delete-modal">
+                <p>Are you sure you want to delete your account?</p>
+                <button type="button" class="edit cancel" *ngIf="deleteMode" (click)="cancel()">Cancel</button>
+                <button type="button" class="edit save" (click)="delete()">Yes</button>
             </div>
         </div>
 
         <div>
-            <button type="button" class="edit">Edit</button>
+            <button type="button" class="edit" *ngIf="!editMode" (click)="edit()">Edit</button>
+            <button type="button" class="edit save" *ngIf="editMode" (click)="save()">Save</button>
+            <button type="button" class="edit cancel" *ngIf="editMode" (click)="cancel()">Cancel</button>
+            <button type="button" class="edit delete" (click)="popup()">Delete</button>
         </div>
     </div>
 </div>
