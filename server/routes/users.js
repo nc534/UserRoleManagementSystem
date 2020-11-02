@@ -4,7 +4,7 @@ const db = require("../util/db");
 
 //login
 router.post('/login', (req, res) => {
-    const login_user_sql = 'Select * from user where email = ? and password = ?';
+    const login_user_sql = 'Select id, role from user where email = ? and password = ?';
     db.query(login_user_sql, [req.body.email, req.body.password], (err, data) => {
         if(err) throw err;
 
@@ -48,6 +48,14 @@ router.post('/', (req, res) => {
 router.get('/:id', (req, res) => {
     const user_by_id_sql = `Select * from user where id = ${req.params.id}`;
     db.query(user_by_id_sql, (err, data) => {
+        if(err) throw err;
+        res.json(data);
+    })
+})
+
+router.get('/email/:email', (req, res) => {
+    const user_by_email_sql = `Select * from user where email = '${req.params.email}'`;
+    var query = db.query(user_by_email_sql, (err, data) => {
         if(err) throw err;
         res.json(data);
     })

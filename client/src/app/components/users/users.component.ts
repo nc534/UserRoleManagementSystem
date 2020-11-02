@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 
 import { NavigationComponent } from '../navigation/navigation.component';
 import { UserService } from '../../service/user.service';
+import { User } from 'src/app/model/User';
 
 @Component({
   selector: 'app-users',
@@ -13,7 +14,7 @@ export class UsersComponent implements OnInit {
 
   editUserForm: FormGroup;
 
-  userList: object;
+  userList: User[];
 
   addUserForm : FormGroup;
   add: boolean = false;
@@ -52,16 +53,33 @@ export class UsersComponent implements OnInit {
   }
 
   addUser() {
-    // this.userService.register(this.addUserForm.value).subscribe((res) => {
 
-    //   if (res) {
-    //     this.addUserForm.reset()
-    //   }
-    // })
+    //add new user to server
+    this.userService.register(this.addUserForm.value).subscribe((res) => {
 
-    console.log(this.addUserForm.value);
-    this.addUserForm.reset();
-    this.resetClicked();
+      if (res) {
+        this.resetClicked();
+
+        //get new user and push to frontend users list
+        this.userService.getUserByEmail(this.addUserForm.value.email).subscribe((res) => {
+          this.userList.push(res[0]);
+        });
+        
+        //reset form
+        this.addUserForm.reset()
+
+      }
+
+    })
+  }
+
+  deleteUser(id: number) {
+
+    //delete user from server
+    this.userService.deleteUser(id).subscribe();
+    
+    //update user list in frontend
+    this.userList = this.userList.filter(user => parseInt(user.id) !== id);
   }
 
 }

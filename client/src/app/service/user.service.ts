@@ -37,12 +37,16 @@ export class UserService {
     return this.http.post(`${this.baseUrl}`, user)
   }
 
-  getAllUsers() {
-    return this.http.get(this.baseUrl);
+  getAllUsers(): Observable<User[]> {
+    return this.http.get<User[]>(this.baseUrl);
   }
 
   getUser(id: number): Observable<User> {
     return this.http.get<User>(`${this.baseUrl}/${id}`);
+  }
+
+  getUserByEmail(email: string): Observable<User> {
+    return this.http.get<User>(`${this.baseUrl}/email/${email}`);
   }
 
   updateUser(id: number, changes: object) {
