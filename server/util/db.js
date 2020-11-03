@@ -12,9 +12,10 @@ const connection = mysql.createConnection({
 connection.connect(err => {
     if(err) {
         console.error(err.message);
+        console.log("Check if MySQL server is running")
+    }else {
+        console.log("Connected to database...");
     }
-
-    console.log("Connected to database...");
 })
 
 module.exports = connection;
