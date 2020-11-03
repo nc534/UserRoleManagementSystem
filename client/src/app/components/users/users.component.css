@@ -39,6 +39,34 @@ th {
     width: 20em;
 }
 
+.delete-container {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0, 0.1);
+}
+
+.delete-modal {
+    background-color: #fefefe;
+    position: fixed;
+    top:40%;
+    left: 35%;
+    padding: 1em;
+    width: 30%;
+    border-radius: 10px;
+}
+
+.user {
+    display: flex;
+    padding-bottom: 2em;
+}
+
+p {
+    padding-left: 1em;
+}
+
 .edit {
     background-color: #3498db;
     color: white;
@@ -55,6 +83,15 @@ th {
     border: none;
     outline: none;
     padding: 8px 10px;
+}
+
+.save {
+    background-color: rgb(106, 158, 106);
+}
+
+.cancel {
+    background-color: rgb(192, 192, 192);
+    margin-right: 1em;
 }
 
 .add {
@@ -87,6 +124,14 @@ th {
 .form-group {
     padding: 5px;
     float: left;
+}
+
+tr input{
+    margin: 0;
+}
+
+tr select{
+    margin: 0;
 }
 
 input, select {

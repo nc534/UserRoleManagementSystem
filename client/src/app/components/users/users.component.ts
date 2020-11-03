@@ -16,8 +16,23 @@ export class UsersComponent implements OnInit {
 
   userList: User[];
 
+  changedUserList: User[];
+
+  originalUser: User;
+
+  changedUser: User;
+
+  edits = {}
+
   addUserForm : FormGroup;
+
   add: boolean = false;
+
+  editMode: boolean = false;
+
+  hasEdit: boolean = false;
+
+  deleteMode: boolean = false;
 
   constructor(private userService: UserService, private formBuilder: FormBuilder) { }
 
@@ -25,15 +40,11 @@ export class UsersComponent implements OnInit {
 
     this.userService.getAllUsers()
       .subscribe(res => {
-        this.userList = res;
-      })
+        //show all users but the current admin
+        this.userList = res.filter(user => parseInt(user.id) !== parseInt(localStorage.getItem('id')));
 
-    this.editUserForm = this.formBuilder.group({
-      first_name: [''],
-      last_name: [''],
-      email: [''],
-      role: ['']
-    });
+        this.changedUserList = JSON.parse(JSON.stringify(this.userList));
+      })
 
     this.addUserForm= this.formBuilder.group({
       first_name: [''],
@@ -52,6 +63,47 @@ export class UsersComponent implements OnInit {
     this.add = false;
   }
 
+  editUser(user) {
+    if(!this.hasEdit) {
+      this.hasEdit = true;
+      this.originalUser = Object.assign({}, user);
+      this.changedUser = user;
+      user.editMode = true;
+    }
+  
+  }
+
+  saveUser(user) {
+    
+    for(var key in this.changedUser) {
+      if(this.changedUser[key] !== this.originalUser[key] && key !== "editMode") {
+        this.edits[key] = this.changedUser[key];
+      }
+    }
+
+    this.originalUser = Object.assign({}, this.changedUser);
+    
+    user.editMode = false;
+    this.hasEdit = false;
+
+    this.userService.updateUser(parseInt(this.originalUser.id), this.edits)
+      .subscribe(res => {
+        console.log(res);
+    });
+
+  }
+
+  cancel(user) {
+
+    this.deleteMode = false;
+
+    if(user !== undefined) {
+      user.editMode = false;
+      this.hasEdit = false;
+      this.changedUserList = JSON.parse(JSON.stringify(this.userList));
+    }
+  }
+
   addUser() {
 
     //add new user to server
@@ -63,6 +115,7 @@ export class UsersComponent implements OnInit {
         //get new user and push to frontend users list
         this.userService.getUserByEmail(this.addUserForm.value.email).subscribe((res) => {
           this.userList.push(res[0]);
+          this.changedUserList.push(res[0]);
         });
         
         //reset form
@@ -73,13 +126,20 @@ export class UsersComponent implements OnInit {
     })
   }
 
+  popup(user: User) {
+    this.originalUser = user;
+    this.deleteMode = true;
+  }
+
   deleteUser(id: number) {
+
+    this.deleteMode = false;
 
     //delete user from server
     this.userService.deleteUser(id).subscribe();
     
     //update user list in frontend
-    this.userList = this.userList.filter(user => parseInt(user.id) !== id);
+    this.changedUserList = this.changedUserList.filter(user => parseInt(user.id) !== id);
   }
 
 }
