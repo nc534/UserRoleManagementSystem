@@ -37,7 +37,7 @@ Softwares used and embedded links to how to install them.
 
 <img src="demo_images/login.PNG">
 <img src="demo_images/register.PNG">
-<img src="demo_images/user_home">
+<img src="demo_images/user_home.PNG">
 <img src="demo_images/profile.PNG">
 <img src="demo_images/admin_home.PNG">
 <img src="demo_images/admin_users.PNG">
